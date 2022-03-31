@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // dd(\App\Models\WorldCountry::all());
         return view('home', ['data' => \App\Models\WorldCountry::all()]);
     }
 }

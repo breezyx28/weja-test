@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', ['data' => \App\Models\WorldCountry::all()]);
 });
 
 Route::group(['middleware' => 'auth'], function () {
