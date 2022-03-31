@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\NeighborhoodController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +19,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+
+    Route::resource('countries', CountryController::class);
+    Route::resource('states', StateController::class);
+    Route::resource('cities', CityController::class);
+    Route::resource('neighborhoods', NeighborhoodController::class);
+});
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
