@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home', ['data' => \App\Models\WorldCountry::all()]);
-});
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', function () {
+        return view('home', ['data' => \App\Models\WorldCountry::all()]);
+    });
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
 
     Route::resource('countries', CountryController::class);

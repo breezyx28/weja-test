@@ -67,7 +67,7 @@
         <tbody>
             @foreach ($data as $item)
                 <tr>
-                    <td><img src="{{ asset('storage/app/' . $item['country']['icon']) }}" width="32" height="32"></td>
+                    <td><img src="{{ Storage::url($item['country']['icon']) }}" width="32" height="32"></td>
                     <td>{{ @$item['country']['iso'] }}</td>
                     <td>{{ @$item['country']['name'] }}</td>
                     <td>{{ @$item['state']['name'] }}</td>

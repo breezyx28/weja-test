@@ -12,7 +12,7 @@
             @foreach ($data as $item)
                 <tr>
                     <th scope="row">{{ $item['id'] }}</th>
-                    <td><img src="{{ $item['icon'] }}" width="32" height="32"></td>
+                    <td><img src="{{ Storage::url($item['icon']) }}" width="32" height="32"></td>
                     <td>{{ $item['iso'] }}</td>
                     <td>{{ $item['name'] }}</td>
                 </tr>

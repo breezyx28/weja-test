@@ -14,7 +14,7 @@ class StoreService
 
     public function __construct(FormRequest $formRequet, Model $model)
     {
-
+        // assign all validated requests in variable
         $validate = $formRequet->validated();
 
         // clear nullable data
@@ -22,13 +22,15 @@ class StoreService
             return $item != null || $item != '';
         });
 
+        // assign models columns to there values in request
         foreach ($validate as $key => $value) {
             $model->$key = $value;
             if ($key == 'icon') {
-                $model->icon = $formRequet->file('icon')->storeAs('Countries', str::replace(' ', '-', $model->name . '.png'));
+                $model->icon = $formRequet->file('icon')->storeAs('public/Countries', str::replace(' ', '-', $model->name . '.png'));
             }
         }
 
+        // save trap
         try {
             $model->save();
             if ($model->class_name() == 'Neighborhood') {
